@@ -4,22 +4,24 @@
 
 int main()
 {
-    int x[10], y[10], p[10];
-    int k, f, n, i, j = 1, f1 = 1, f2 = 0;
+    float x[10], y[10], p[10];
+    float k, f, f1 = 1, f2 = 0;
+    int i, j = 1, n;
+
     printf("\nEnter the number of observations:\n");
     scanf("%d", &n);
 
     printf("\nEnter the different values of x:\n");
     for (i = 1; i <= n; i++)
-        scanf("%d", &x[i]);
+        scanf("%f", &x[i]);
 
     printf("\nThe corresponding values of y are:\n");
     for (i = 1; i <= n; i++)
-        scanf("%d", &y[i]);
+        scanf("%f", &y[i]);
 
     f = y[1];
     printf("\nEnter the value of 'k' in f(k) you want to evaluate:\n");
-    scanf("%d", &k);
+    scanf("%f", &k);
 
     do
     {
@@ -40,6 +42,6 @@ int main()
 
     while (n != 1);
     f += f2;
-    printf("\nf(%d) = %d", k, f);
+    printf("\nf(%f) = %f", k, f);
     return 0;
 }
