@@ -21,6 +21,5 @@ int main(){
     }
 
     printf("The approximate root of given function is %f with %d number of iterations.",x1,n);
-    getch();
     return 0;
 }
