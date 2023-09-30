@@ -32,14 +32,13 @@ void horner(int degree, float coefficients[], float initial_point, float *fx, fl
 {
     int i;
     *fx = coefficients[0], *derivative = coefficients[0];
-    for (i = 1; i <= degree; i++)
+    for (i = 1; i < degree; i++)
     {
         printf("%f\n", *fx);
         *fx = coefficients[i] + *fx * initial_point;
         *derivative = *fx + *derivative * initial_point;
     }
-    printf("f(%f) = %f\n", initial_point, *fx);
-    printf("f'(%f) = %f\n", initial_point, *derivative);
+    *fx = coefficients[degree] + *fx * initial_point;
 }
 
 int main()
