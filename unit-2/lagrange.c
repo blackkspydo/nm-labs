@@ -1,32 +1,48 @@
 // Polynomial interpolation using Lagrange's Method
+
 #include <stdio.h>
 #include <math.h>
-#define MAX 15
+
+#define MAX_DATA_POINTS 15
 
 int main()
 {
-    int n, i, j;
-    float x[MAX], f[MAX], fp, lf, sum, xp;
+    int num_data_points, i, j;
+    float x[MAX_DATA_POINTS], y[MAX_DATA_POINTS], interpolated_value, lagrange_factor, sum, x_interpolation_point;
     char q;
-    printf("\n Input the number of data pairs: ");
-    scanf("%d", &n);
-    printf("\nInput data pairs x(i) and values f(i) (one set in each line):");
-    for (i = 0; i < n; i++)
-        scanf("%f %f", &x[i], &f[i]);
+
+    // Prompt user to input the number of data points
+    printf("\n Input the number of data points: ");
+    scanf("%d", &num_data_points);
+
+    // Prompt user to input data points x(i) and values y(i) (one set in each line)
+    printf("\nInput data points x(i) and values y(i) (one set in each line):");
+    for (i = 0; i < num_data_points; i++)
+        scanf("%f %f", &x[i], &y[i]);
+
+    // Prompt user to input x at which interpolation is required
     printf("\n Input x at which interpolation is required: ");
-    scanf("%f", &xp);
+    scanf("%f", &x_interpolation_point);
+
     sum = 0.0;
-    for (i = 0; i < n; i++)
+
+    // Calculate the interpolated value using Lagrange's method
+    for (i = 0; i < num_data_points; i++)
     {
-        lf = 1.0;
-        for (j = 0; j < n; j++)
+        lagrange_factor = 1.0;
+        for (j = 0; j < num_data_points; j++)
         {
             if (i != j)
-                lf = lf * (xp - x[j]) / (x[i] - x[j]);
+                lagrange_factor = lagrange_factor * (x_interpolation_point - x[j]) / (x[i] - x[j]);
         }
-        sum = sum + lf * f[i];
+        sum = sum + lagrange_factor * y[i];
     }
-    fp = sum;
-    printf("\n Interpolated function value at x = %f is %f.", xp, fp);
+
+    interpolated_value = sum;
+
+    // Print the interpolated function value at x = x_interpolation_point
+    printf("\n Interpolated function value at x = %f is %f.", x_interpolation_point, interpolated_value);
+
     return 0;
 }
+

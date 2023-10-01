@@ -32,7 +32,7 @@ int main()
         else
             a = c;
         printf("a = %f, b = %f, c = %f\n", a, b, c);
-    }while (fabs((b - a) / a) > EPS);
+    } while (fabs((b - a) / a) > EPS);
     printf("The approximate root of given function is %f with %d number of iterations.", c, n);
     return 0;
 }
