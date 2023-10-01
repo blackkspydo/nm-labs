@@ -25,6 +25,5 @@ int main()
         printf("\n%d \t %f \t %f\n", i, x, y);
     }
     printf("\nValue of y at x = %f is %f", x, y);
-    getch();
     return 0;
 }

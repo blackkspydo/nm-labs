@@ -2,31 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #define MAX 10
-int gauss2(int n, float a[MAX][MAX], float b[MAX], float x[MAX])
-{
-    elim(n, a, b);
-    bsub(n, a, b, x);
-    return 0;
-}
-int elim(int n, float a[MAX][MAX], float b[MAX])
-{
-    int i, j, k;
-    float factor;
-    for (k = 1; k <= n - 1; k++)
-    {
-        pivot(n, a, b, k);
-        for (i = k + 1; i <= n; i++)
-        {
-            factor = a[i][k] / a[k][k];
-            for (j = k + 1; j <= n; j++)
-            {
-                a[i][j] = a[i][j] - factor * a[k][j];
-            }
-            b[i] = b[i] - factor * b[k];
-        }
-    }
-    return 0;
-}
+
 int pivot(int n, float a[MAX][MAX], float b[MAX], int k)
 {
     int p, i, j;
@@ -55,6 +31,25 @@ int pivot(int n, float a[MAX][MAX], float b[MAX], int k)
     }
     return 0;
 }
+int elim(int n, float a[MAX][MAX], float b[MAX])
+{
+    int i, j, k;
+    float factor;
+    for (k = 1; k <= n - 1; k++)
+    {
+        pivot(n, a, b, k);
+        for (i = k + 1; i <= n; i++)
+        {
+            factor = a[i][k] / a[k][k];
+            for (j = k + 1; j <= n; j++)
+            {
+                a[i][j] = a[i][j] - factor * a[k][j];
+            }
+            b[i] = b[i] - factor * b[k];
+        }
+    }
+    return 0;
+}
 int bsub(int n, float a[MAX][MAX], float b[MAX], float x[MAX])
 {
     int i, j, k;
@@ -67,6 +62,12 @@ int bsub(int n, float a[MAX][MAX], float b[MAX], float x[MAX])
             sum = sum + a[k][j] * x[j];
         x[k] = (b[k] - sum) / a[k][k];
     }
+    return 0;
+}
+int gauss2(int n, float a[MAX][MAX], float b[MAX], float x[MAX])
+{
+    elim(n, a, b);
+    bsub(n, a, b, x);
     return 0;
 }
 int main()
